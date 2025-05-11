@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://meterry.netlify.app"],  # Your frontend domain
+    allow_origins=["*"],  # Your frontend domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
