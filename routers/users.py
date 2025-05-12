@@ -54,7 +54,7 @@ async def buy_unit(db: db_dependency, bill: Bill):
     user_data.bill += unit_buy
     db.add(user_data)
     db.add(Billings(amount=bill.amount, 
-                    time_stamp=str(datetime.now()), 
+                    time_stamp=datetime.now(), 
                     unit_gotten=unit_buy))
     db.commit()
     

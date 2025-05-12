@@ -5,7 +5,7 @@ class SmartMeter(Base):
     __tablename__ = 'smart_meter'
     
     id=Column(Integer, primary_key=True, index=True)
-    time_stamp=Column(DateTime)
+    time_stamp=Column(DateTime, nullable=True)
     voltage=Column(Float)
     current=Column(Float)
     power=Column(Float)

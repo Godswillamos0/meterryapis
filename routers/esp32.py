@@ -1,5 +1,5 @@
 from typing import Annotated, Optional
-from fastapi import APIRouter, Depends, status, HTTPException
+from fastapi import APIRouter, Depends, Request, status, HTTPException
 from pydantic import BaseModel, Field
 from database import SessionLocal
 from sqlalchemy.orm import Session
@@ -44,7 +44,7 @@ async def get_latest_data():
     return DataRequest.from_orm(latest_data)
 
 @router.post('/send_data', status_code=status.HTTP_201_CREATED)
-async def send_data(db: db_dependency, data: DataRequest):
+async def send_data(db: db_dependency, data: DataRequest, request:Request):
     global latest_data
     user = db.query(Users).filter(Users.id==1).first()
     now = datetime.now()
@@ -58,6 +58,10 @@ async def send_data(db: db_dependency, data: DataRequest):
     db.add(SmartMeter(**data.dict()))
     db.commit()
     #db.refresh(SmartMeter(**data.dict()))
+    
+    body = await request.json()
+    print("Received body:", body)
+    
     return data
 
 
