@@ -49,7 +49,7 @@ async def send_data(db: db_dependency, data: DataRequest):
     user = db.query(Users).filter(Users.id==1).first()
     now = datetime.now()
     fixed_price = 206.80
-    data.time_stamp = now
+    data.time_stamp = str(now)
     latest_data = data.dict()
     user.energy_consumption += data.energy
     consumption = user.energy_consumption/1000
