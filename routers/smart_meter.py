@@ -35,7 +35,7 @@ async def get_live_data(ld:live_data_dependency):
     print(ld)
     print(type(ld))
     now = datetime.now()
-    if now-ld.time_stamp > timedelta(seconds=5):
+    if now-ld.time_stamp > timedelta(seconds=10):
         raise HTTPException(status_code=status.HTTP_408_REQUEST_TIMEOUT)
     print(ld.time_stamp -now)
     return ld
