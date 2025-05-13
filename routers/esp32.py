@@ -65,8 +65,5 @@ async def send_data(db: db_dependency, data: DataRequest, request:Request):
     return data
 
 
-@router.get('/')
-async def dummy():
-    return "Dummy"
 
 
