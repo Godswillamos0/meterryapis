@@ -48,11 +48,13 @@ async def create_user(db: db_dependency, user: CreateUserRequest):
 async def buy_unit(db: db_dependency, bill: Bill):
     
     user_data=db.query(Users).filter(Users.id==1).first()
+    ##bill_model=db.query(Billings).all()
     #1 unit(KWh) is == #206.80
     fixed_price = 206.80
     unit_buy = bill.amount/fixed_price
     user_data.bill += unit_buy
     db.add(user_data)
+    db.flush()
     db.add(Billings(amount=bill.amount, 
                     time_stamp=datetime.now(), 
                     unit_gotten=unit_buy))
