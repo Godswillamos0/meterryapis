@@ -26,7 +26,7 @@ router = APIRouter(
 )
 
 device_mode=False
-def get_device_mode():
+def device_state():
     global device_mode
     return device_mode
 
