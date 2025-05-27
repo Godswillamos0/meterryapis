@@ -25,6 +25,9 @@ router = APIRouter(
     prefix='/user'
 )
 
+device_mode=False
+def get_device_mode():
+    return global device_mode
 
 
 def get_db():
@@ -64,8 +67,15 @@ async def buy_unit(db: db_dependency, bill: Bill):
 async def get_bill_history(db: db_dependency):
     return db.query(Billings).all()
 
-@router.get('bill/history/remaining-bill', status_code=200)
+@router.get('/bill/history/remaining-bill', status_code=200)
 async def get_user_remaining_bill(db: db_dependency):
     user_model = db.query(Users).filter(Users.id ==1).first()
     return user_model.bill
-    
+
+@router.post('/on', status_code=200)
+async def turn_device_on():
+    global device_mode=True
+
+@router.post('/off', status_code=200)
+async def turn_device_off():
+    global device_mode=False
