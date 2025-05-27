@@ -25,8 +25,11 @@ router = APIRouter(
     prefix='/user'
 )
 
-device_state=False
+class DeviceState:
+    def __init__(self):
+        self.mode = False  # default is 'off'
 
+device_state = DeviceState()
 
 def get_db():
     db = SessionLocal()
@@ -73,12 +76,12 @@ async def get_user_remaining_bill(db: db_dependency):
 @router.post('/on', status_code=200)
 async def turn_device_on():
     global device_state
-    device_state=True
+    device_state.mode=True
     return {'status': 'on'}
 
 @router.post('/off', status_code=200)
 async def turn_device_off():
     global device_state
-    device_state=False
+    device_state.mode=False
     return {'status': 'off'}
 
