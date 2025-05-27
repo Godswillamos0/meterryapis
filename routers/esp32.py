@@ -5,7 +5,7 @@ from database import SessionLocal
 from sqlalchemy.orm import Session
 from models import SmartMeter, Users, Billings
 from datetime import datetime
-from users import device_state
+from .users import device_state
 
 
 router = APIRouter(
