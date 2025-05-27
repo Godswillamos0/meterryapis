@@ -28,7 +28,7 @@ router = APIRouter(
 device_mode=False
 async def device_state():
     global device_mode
-    return device_mode
+    return false
 
 
 def get_db():
