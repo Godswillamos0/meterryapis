@@ -68,7 +68,7 @@ async def send_data(db: db_dependency, data: DataRequest, request:Request):
 
 @router.get('/get_device_mode', status_code=200)
 async def get_device_state():
-    if device_mode:
+    if device_mode():
         return 'on'
     else:
         return 'off'
