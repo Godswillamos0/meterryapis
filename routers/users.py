@@ -57,11 +57,16 @@ async def buy_unit(db: db_dependency, bill: Bill):
     fixed_price = 206.80
     unit_buy = bill.amount/fixed_price
     user_data.bill += unit_buy
-    db.add(user_data)
-    db.flush()
-    db.add(Billings(amount=bill.amount, 
+    bill_data=Billings(amount=bill.amount, 
                     time_stamp=datetime.now(), 
-                    unit_gotten=unit_buy))
+                    unit_gotten=unit_buy)
+
+    db.add_all([user_data, bill_data])  # Optional alternative
+
+    db.commit()
+    db.refresh(user_data)
+    db.refresh(bill_data)
+    
     db.commit()
     
 @router.get('/bill/history', status_code=status.HTTP_200_OK)
