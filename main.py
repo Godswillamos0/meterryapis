@@ -19,3 +19,8 @@ models.Base.metadata.create_all(bind=engine)
 app.include_router(smart_meter.router)
 app.include_router(esp32.router)
 app.include_router(users.router)
+
+
+@app.get("/ping")
+async def ping_server():
+    return "server active"
