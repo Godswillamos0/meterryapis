@@ -6,12 +6,14 @@ class SmartMeter(Base):
     
     id=Column(Integer, primary_key=True, index=True)
     time_stamp=Column(DateTime, nullable=True)
-    voltage=Column(Float)
+    activePower=Column(Float)
     current=Column(Float)
-    power=Column(Float)
+    powerfactor=Column(Float)
     energy=Column(Float)
+    frequency=Column(Float)
+    energyCal = Column(Float)
+    energykWh = Column(Float)
 
-    
     
 class Users(Base):
     __tablename__ ='users'
@@ -27,4 +29,5 @@ class Billings(Base):
     id=Column(Integer, primary_key=True, index=True)
     amount=Column(Float)
     time_stamp=Column(DateTime)
+
     unit_gotten=Column(Float)
