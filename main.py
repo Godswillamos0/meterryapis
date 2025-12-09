@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import models
-from routers import smart_meter, esp32, users
+from routers import smart_meter, esp32
 from database import engine
 
 app = FastAPI()
@@ -24,3 +24,4 @@ app.include_router(users.router)
 @app.get("/ping")
 async def ping_server():
     return "server active"
+
