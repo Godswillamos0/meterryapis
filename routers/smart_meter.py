@@ -40,10 +40,11 @@ async def get_live_data(ld:live_data_dependency):
     print(ld.time_stamp -now)
     return ld
 
-@router.get('/expired', status_code=status.HTTP_200_OK)
-async def check_if_unit_expired(db: db_dependency):
-    user_model=db.query(Users).filter(Users.id==1).first()
-    if user_model.bill <= 0.0:
-        return True
-    else:
-        return False
+#@router.get('/expired', status_code=status.HTTP_200_OK)
+#async def check_if_unit_expired(db: db_dependency):
+#    user_model=db.query(Users).filter(Users.id==1).first()
+#    if user_model.bill <= 0.0:
+#        return True
+#    else:
+ #       return False
+
