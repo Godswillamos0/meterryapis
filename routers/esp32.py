@@ -26,10 +26,10 @@ class DataRequest(BaseModel):
     current:float = Field(default=None)
     activePower:float = Field(default=None)
     energy: float = Field(default=None)
-    powerfactor=Field(default=None)
-    frequency=Field(default=None)
-    energyCal = Field(default=None)
-    energykWh = Field(default=None)
+    powerfactor: float=Field(default=None)
+    frequency: float=Field(default=None)
+    energyCal: float = Field(default=None)
+    energykWh: float = Field(default=None)
     time_stamp: datetime
 
     class Config:
@@ -73,6 +73,7 @@ async def send_data(db: db_dependency, data: DataRequest, request:Request):
 @router.get('/get_device_mode', status_code=200)
 async def get_device_state():
         return device_state.mode
+
 
 
 
